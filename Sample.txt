@@ -1,0 +1,135 @@
+----------------TCP CLIENT (no arguments)----------------
+compiled/TCPClient 
+[19:28:32] [ERROR] Invalid arguments: Usage: compiled/TCPClient <ip> <amount> <years> <rate>
+[19:28:32] [INFO] Example: compiled/TCPClient 127.0.0.1 150,000 30 4.69%
+
+----------------TCP CLIENT (invalid rate)----------------
+compiled/TCPClient 127.0.0.1 150,000 30 a
+[19:29:09] [INFO] IP is valid: 127.0.0.1
+[19:29:09] [INFO] Amount is valid: 150000
+[19:29:09] [INFO] Years are valid: 30
+[19:29:09] [ERROR] Invalid rate: a is not a number
+
+---------TCP CLIENT (unreachable ip, max attempts)---------
+compiled/TCPClient localhost 150,000 30 4.69%
+[19:30:25] [INFO] IP is valid: localhost -> 127.0.0.1
+[19:30:25] [INFO] Amount is valid: 150000
+[19:30:25] [INFO] Years are valid: 30
+[19:30:25] [INFO] Rate is valid: 4.69
+[19:30:25] [ERROR] Connection timeout: Connection refused
+[19:30:26] [ERROR] Connection timeout: Connection refused
+[19:30:27] [ERROR] Connection timeout: Connection refused
+[19:30:28] [ERROR] Connection timeout: Connection refused
+[19:30:29] [ERROR] Connection timeout: Connection refused
+[19:30:30] [ERROR] Connection timeout: Connection refused
+[19:30:31] [ERROR] Connection timeout: Connection refused
+[19:30:32] [ERROR] Connection timeout: Connection refused
+[19:30:33] [ERROR] Connection timeout: Connection refused
+[19:30:34] [ERROR] Connection timeout: Connection refused
+[19:30:35] [ERROR] Failed to connect after 10 attempts
+
+
+
+
+
+
+------------TCP CLIENT (server off then on)------------
+compiled/TCPClient localhost 150,000 30 4.69%
+[19:30:49] [INFO] IP is valid: localhost -> 127.0.0.1
+[19:30:49] [INFO] Amount is valid: 150000
+[19:30:49] [INFO] Years are valid: 30
+[19:30:49] [INFO] Rate is valid: 4.69
+[19:30:49] [ERROR] Connection timeout: Connection refused
+[19:30:50] [ERROR] Connection timeout: Connection refused
+[19:30:51] [INFO] Connected to server: localhost:13000
+[19:30:51] [INFO] Sent message: 16 bytes
+[19:30:51] [INFO] Awaiting response on port: 36416
+[19:30:51] [INFO] Received response: 
+$150000 loan
+monthly payment is $777.06
+total payment is $9324.72
+
+-------------------------TCP SERVER-------------------------
+compiled/TCPServer 
+[19:30:51] [INFO] Server listening on port: 13000
+[19:30:51] [INFO] Client connected from: 127.0.0.1:36416
+[19:30:51] [INFO] Message from client: 150,000 30 4.69%
+[19:30:51] [INFO] Amount is valid: 150000
+[19:30:51] [INFO] Years are valid: 30
+[19:30:51] [INFO] Rate is valid: 4.69
+[19:30:51] [INFO] Response sent to client: 
+$150000 loan
+monthly payment is $777.06
+total payment is $9324.72
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------UDP CLIENT (unreachable ip, max attempts)---------
+compiled/UDPClient localhost 50,000 30 4.69
+[19:32:58] [INFO] IP is valid: localhost -> 127.0.0.1
+[19:32:58] [INFO] Amount is valid: 50000
+[19:32:58] [INFO] Years are valid: 30
+[19:32:58] [INFO] Rate is valid: 4.69
+[19:32:58] [INFO] Sent message: 14 bytes
+[19:32:59] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:00] [INFO] Sent message: 14 bytes
+[19:33:01] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:02] [INFO] Sent message: 14 bytes
+[19:33:03] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:04] [INFO] Sent message: 14 bytes
+[19:33:05] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:06] [INFO] Sent message: 14 bytes
+[19:33:07] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:08] [INFO] Sent message: 14 bytes
+[19:33:10] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:11] [INFO] Sent message: 14 bytes
+[19:33:12] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:13] [INFO] Sent message: 14 bytes
+[19:33:14] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:15] [INFO] Sent message: 14 bytes
+[19:33:16] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:17] [INFO] Sent message: 14 bytes
+[19:33:18] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:33:19] [ERROR] Failed to send message after 10 attempts
+
+
+
+------------UDP CLIENT (server off then on)------------
+compiled/UDPClient localhost 50,000 30 4.69
+[19:34:11] [INFO] IP is valid: localhost -> 127.0.0.1
+[19:34:11] [INFO] Amount is valid: 50000
+[19:34:11] [INFO] Years are valid: 30
+[19:34:11] [INFO] Rate is valid: 4.69
+[19:34:11] [INFO] Sent message: 14 bytes
+[19:34:12] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:34:13] [INFO] Sent message: 14 bytes
+[19:34:14] [ERROR] No response after 1 seconds: Resource temporarily unavailable
+[19:34:15] [INFO] Sent message: 14 bytes
+[19:34:15] [INFO] Response from server: 
+$50000 loan
+monthly payment is $259.02
+total payment is $3108.24
+
+-------------------------UDP SERVER-------------------------
+compiled/UDPServer 
+[19:34:13] [INFO] Server ready on port: 13000
+[19:34:15] [INFO] Message from client: 50,000 30 4.69
+[19:34:15] [INFO] Amount is valid: 50000
+[19:34:15] [INFO] Years are valid: 30
+[19:34:15] [INFO] Rate is valid: 4.69
+[19:34:15] [INFO] Response to client: 
+ACK_START
+$50000 loan
+monthly payment is $259.02
+total payment is $3108.24
+ACK_END
